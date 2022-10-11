@@ -1,0 +1,14 @@
+// Flexbox
+
+@mixin flex(
+  $justify-content: flex-start,
+  $align-items: flex-start,
+  $flex-direction: row,
+  $flex-wrap: wrap,
+) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-direction: $flex-direction;
+  flex-wrap: $flex-wrap;
+}

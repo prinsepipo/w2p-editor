@@ -1,11 +1,17 @@
 <template>
-  <div class="app"></div>
+  <div class="app">
+    <TheEditor />
+  </div>
 </template>
 
 <script>
-export default {
+import TheEditor from './components/TheEditor.vue';
 
-}
+export default {
+  components: {
+    TheEditor,
+  },
+};
 </script>
 
 <style lang="scss" scoped>
