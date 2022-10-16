@@ -14,18 +14,29 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapMutations } from 'vuex';
 
 export default {
   methods: {
-    ...mapActions({
-      uploadFile: 'files/uploadFile',
+    ...mapMutations({
+      ADD_CANVAS_OBJECT: 'canvas/ADD_CANVAS_OBJECT',
     }),
-    handleClickUpload() {
+    handleClickUpload(e) {
       this.$refs.inputFile.click();
     },
     handleInputFile(e) {
-      this.uploadFile(e.target.files[0]);
+      if (e.target.files.length < 1) {
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.addEventListener('load', () => {
+        this.ADD_CANVAS_OBJECT({
+          href: reader.result,
+        });
+      });
+
+      reader.readAsDataURL(e.target.files[0]);
     }
   },
 }

@@ -1,10 +1,10 @@
 import Vuex from 'vuex';
 
-import files from './files';
+import canvas from './canvas';
 
 
 export default new Vuex.Store({
   modules: {
-    files,
+    canvas,
   },
 });
