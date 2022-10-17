@@ -1,5 +1,6 @@
 <template>
   <g
+    ref="g"
     :transform="transformations"
     @click="handleClick"
     @mousedown="handleMouseDown"
@@ -80,6 +81,8 @@ export default {
 
         this.x = mouseX - this.offsetX;
         this.y = mouseY - this.offsetY;
+
+        this.$emit('drag', e);
       }
     },
   },

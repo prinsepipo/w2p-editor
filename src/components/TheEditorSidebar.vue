@@ -6,7 +6,7 @@
           class="sidebar__action-button"
           type="button"
           @click="handleClickUpload"
-        >Upload</button>
+        ><IconUpload />Upload</button>
         <input ref="inputFile" class="sidebar__upload" type="file" @input="handleInputFile">
       </li>
     </ul>
@@ -16,29 +16,32 @@
 <script>
 import { mapMutations } from 'vuex';
 
+import IconUpload from './Icons/IconUpload.vue';
+
 export default {
-  methods: {
-    ...mapMutations({
-      ADD_CANVAS_OBJECT: 'canvas/ADD_CANVAS_OBJECT',
-    }),
-    handleClickUpload(e) {
-      this.$refs.inputFile.click();
+    components: {
+      IconUpload,
     },
-    handleInputFile(e) {
-      if (e.target.files.length < 1) {
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.addEventListener('load', () => {
-        this.ADD_CANVAS_OBJECT({
-          href: reader.result,
-        });
-      });
-
-      reader.readAsDataURL(e.target.files[0]);
-    }
-  },
+    methods: {
+      ...mapMutations({
+          ADD_CANVAS_OBJECT: "canvas/ADD_CANVAS_OBJECT",
+      }),
+      handleClickUpload(e) {
+          this.$refs.inputFile.click();
+      },
+      handleInputFile(e) {
+          if (e.target.files.length < 1) {
+              return;
+          }
+          const reader = new FileReader();
+          reader.addEventListener("load", () => {
+              this.ADD_CANVAS_OBJECT({
+                  href: reader.result,
+              });
+          });
+          reader.readAsDataURL(e.target.files[0]);
+      },
+    },
 }
 </script>
 
